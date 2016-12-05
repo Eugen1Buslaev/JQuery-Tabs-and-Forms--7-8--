@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tabs</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	$(function () {
+    var tabContainers = $('div.tabs > div'); // получаем массив контейнеров
+    tabContainers.hide().filter(':first').show(); // прячем все, кроме первого
+    // далее обрабатывается клик по вкладке
+    $('div.tabs ul.tabNavigation a').click(function () {
+        tabContainers.hide(); // прячем все табы
+        tabContainers.filter(this.hash).show(); // показываем содержимое текущего
+        $('div.tabs ul.tabNavigation a').removeClass('selected'); // у всех убираем класс 'selected'
+        $(this).addClass('selected'); // текушей вкладке добавляем класс 'selected'
+        return false;
+    }).filter(':first').click();
+});
+
+	</script>
+	<style>
+	div.tabs {
+background: #333;
+padding: 1em;
+}
+
+div.container { 
+margin: auto; 
+width: 90%; 
+margin-bottom: 10px;
+}
+
+ul.tabNavigation {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+ul.tabNavigation li {
+display: inline;
+}
+
+ul.tabNavigation li a {
+padding: 3px 9px;
+background-color: #666;
+color: #000;
+text-decoration: none;
+}
+
+ul.tabNavigation li a.selected,
+ul.tabNavigation li a.selected:hover {
+background: #FFF;
+color: #000;
+}
+
+ul.tabNavigation li a:hover {
+background: #ccc;
+color: #000;
+}
+
+ul.tabNavigation li a:focus {
+outline: 0;
+}
+
+div.tabs div {
+padding: 5px;
+margin-top: 3px;
+border: 1px solid #FFF;
+background: #FFF;
+}
+
+div.tabs div h2 {
+margin-top: 0;
+}
+
+	</style>
+</head>
+<body>
+<h1>Цитаты</h1>
+<div class="tabs">
+<!-- Это сами вкладки -->
+    <ul class="tabNavigation">
+        <li><a class="" href="#first">Д.Огилви</a></li>
+        <li><a class="" href="#second">Миллер</a></li>
+        <li><a class="" href="#third">Черчилль</a></li>
+    </ul>
+<!-- Это контейнеры содержимого -->    
+    <div id="first">
+        <h2>Д.Огилви</h2>
+        <p>Лучший способ превратить работника в генератор идей это возложить на него самую высокую ответственность.</p>
+    </div>
+    <div id="second">
+        <h2>Миллер</h2>
+        <p>Деньги не имеют значения — пока они у вас есть.</p>
+    </div>
+    <div id="third">
+        <h2>Черчилль</h2>
+        <p>Пессимист видит трудности при каждой возможности; оптимист в каждой трудности видит возможности.</p>
+    </div>
+</div>
+
+	
+</body>
+</html>
